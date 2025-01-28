@@ -12,7 +12,7 @@ mortgage_router = APIRouter(prefix="/mortgage", tags=["Mortgage"])
     response_model=List[GetMortgage],
     responses={
         200: {
-            "description": "List of Mortgages retrieved",
+            "description": "List of retrieved Mortgages",
             "content": {
                 "application/json": {
                     "examples": {

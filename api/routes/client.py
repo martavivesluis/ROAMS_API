@@ -96,7 +96,7 @@ async def all_clients():
         },
     },
 )
-async def create_client(body: PostClient):
+async def create_a_client(body: PostClient):
     row = await Client.create(**body.model_dump(exclude_unset=True))
     return await GetClient.from_tortoise_orm(row)
 
@@ -199,7 +199,7 @@ async def client_by_DNI(Schema: str = Depends(DNISchema)):
             },
         },
     })
-async def put_client(body: PutClient, response_model=GetClient):
+async def modify_a_client(body: PutClient, response_model=GetClient):
     client = await Client.get_or_none(DNI=body.DNI)
     if client is None:
         raise HTTPException(status_code=404, detail="Client not found")
@@ -251,7 +251,7 @@ async def put_client(body: PutClient, response_model=GetClient):
         },
     },
 )
-async def delete_client(Schema: str = Depends(DNISchema)):
+async def delete_a_client(Schema: str = Depends(DNISchema)):
     client = await Client.get_or_none(DNI=Schema.DNI)
     if not client:
         raise HTTPException(status_code=404, detail="Client not found")
